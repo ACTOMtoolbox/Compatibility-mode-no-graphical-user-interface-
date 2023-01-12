@@ -3,66 +3,25 @@ echo '*                                                 *'
 echo '*          Starting up the ACTOM Toolbox          *'
 echo '*                   v1.0 2019-2022                *'
 echo '*                                                 *'
+echo '*        Re-Run using updated thresholds          *'
+echo '*    and updated leakage rates in the ini file    *'
+[ ! -d "'$(pwd)'/Advdiff" ] && [ ! -d "'$(pwd)'/Cseep" ] && [ ! -d "'$(pwd)'/ROC" ] && echo '*                                                 *'
+[ ! -d "'$(pwd)'/Advdiff" ] && [ ! -d "'$(pwd)'/Cseep" ] && [ ! -d "'$(pwd)'/ROC" ] && echo '* Make sure you copy over the Advdiff, Cseep & ROC*'
+[ ! -d "'$(pwd)'/Advdiff" ] && [ ! -d "'$(pwd)'/Cseep" ] && [ ! -d "'$(pwd)'/ROC" ] && echo '*      directories to the working directory:      *'
+[ ! -d "'$(pwd)'/Advdiff" ] && [ ! -d "'$(pwd)'/Cseep" ] && [ ! -d "'$(pwd)'/ROC" ] && echo '*                                                 *'
+[ ! -d "'$(pwd)'/Advdiff" ] && [ ! -d "'$(pwd)'/Cseep" ] && [ ! -d "'$(pwd)'/ROC" ] && echo '*  '$(pwd)'
+[ ! -d "'$(pwd)'/Advdiff" ] && [ ! -d "'$(pwd)'/Cseep" ] && [ ! -d "'$(pwd)'/ROC" ] && echo '*          then press enter to continue           *'
+[ ! -d "'$(pwd)'/Advdiff" ] && [ ! -d "'$(pwd)'/Cseep" ] && [ ! -d "'$(pwd)'/ROC" ] && read blankspace
+echo '*                                                 *'
 echo '***************************************************'
-echo
-echo
-echo '***************************************************'
-echo '*         The Advection-Diffusion Module          *'
-echo '*          (Tracer Transport Simulator)           *'
-echo '***************************************************'
-echo
-mkdir -p Advdiff
-cd Advdiff
-cp ../AdvDiff.ini AdvDiff.ini
-mkdir -p Figures
-mkdir -p output
-docker run -it $options \
-          --mount type=bind,source="$(pwd)",target=/external/settings \
-          --mount type=bind,source="$(pwd)"/output,target=/app/Outdata \
-          --mount type=bind,source="$(pwd)"/Figures,target=/app/Figures \
- actomtoolbox/adv-diff
-echo
-echo '***************************************************'
-echo '*         Anomaly Criteria Identification         *'
-echo '*                      Cseep                      *'
-echo '***************************************************'
-echo
-mkdir -p ../Cseep
-cd ../Cseep
-mkdir -p output
-
-# To change input files, add this line to the docker cseep command, replacing # with the input file directory:
-# --mount type=bind,source="#",target=/srv/actom-app/input/external \
-
-docker run -it $options \
-          --mount type=bind,source="$(pwd)"/output,target=/srv/actom-app/output \
-          --mount type=bind,source="$(pwd)"/..,target=/external/settings \
- actomtoolbox/cseep
-echo
-echo '***************************************************'
-echo '*         Anomaly Criteria Identification         *'
-echo '*                  Rate of Change                 *'
-echo '***************************************************'
-echo
-mkdir -p ../ROC
-cd ../ROC
-mkdir -p output
-
-# To change input files, add this line to the docker roccommand, replacing # with the input file directory:
-# --mount type=bind,source="#",target=/srv/actom-app/input/external \
-
-docker run -it $options \
-          --mount type=bind,source="$(pwd)"/output,target=/external/output \
-          --mount type=bind,source="$(pwd)"/..,target=/external/settings \
- actomtoolbox/actom-roc
 echo
 echo '***************************************************'
 echo '*              Deployment strategies              *'
 echo '*                  Optimal Cover                  *'
 echo '***************************************************'
 echo
-mkdir -p ../OptCover
-cd ../OptCover
+mkdir -p OptCover
+cd OptCover
 mkdir -p output
 docker run -it $options \
           --mount type=bind,source="$(pwd)"/../Advdiff/output,target=/app/Input  \
