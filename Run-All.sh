@@ -104,7 +104,7 @@ echo '*                                                 *'
 echo '***************************************************'
 echo
  cd ../
- docker run -it $options --mount type=bind,source="$(pwd)",target=/srv/actom-output/input actomtoolbox/actom-output
+ docker run -it $options -e systemOS=none --mount type=bind,source="$(pwd)",target=/srv/actom-output/input actomtoolbox/actom-output
 echo
 echo '***************************************************'
 echo '*     The Technical Summary can be found at:      *'
