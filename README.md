@@ -1,5 +1,5 @@
 # Shell Script - No GUI
-To refer specifically to the ACTOM DST, you may use its Zenodo DOI:<br>
+To refer specifically to the ACTOM DST, you may use its Zenodo DOI: 10.5281/zenodo.10246238<br>
 <a href="https://doi.org/10.5281/zenodo.10246238"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.10246238.svg" alt="DOI"></a>
 
 Run on any machine that runs shell scripts, with ini configuration files for settings - Docker is required to run the toolbox (https://docs.docker.com/engine/install/).
