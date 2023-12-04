@@ -1,4 +1,6 @@
 # Shell Script - No GUI
+<a href="https://doi.org/10.5281/zenodo.10246238"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.10246238.svg" alt="DOI"></a>
+
 Run on any machine that runs shell scripts, with ini configuration files for settings - Docker is required to run the toolbox (https://docs.docker.com/engine/install/).
 
 The Decision Support Tool is open source and can be freely downloaded from https://github.com/ACTOMtoolbox, which also includes documentation and instructions. If used independently the developers accept no liability relating to the use of the DST. 
